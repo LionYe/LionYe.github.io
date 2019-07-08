@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>Guava Collections使用体验 | Harbor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="的确Java Collections Framework：Set,List,Map已经基本可以满足我们的要求；但当我们遇上一些比较复杂的业务需要时Guava Collections可以带来很酷的编码体验！！！  Guava Collections中的集合应该也是最成熟为人所熟知的一部分【不可变集合，新集合类型，强大的集合工具类，扩展集合工具类】。  在JAVA中使用Guava Collecti">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Guava Collections使用体验">
+<meta property="og:url" content="http://yoursite.com/2017/06/23/Guava-Collections使用体验/index.html">
+<meta property="og:site_name" content="Harbor">
+<meta property="og:description" content="的确Java Collections Framework：Set,List,Map已经基本可以满足我们的要求；但当我们遇上一些比较复杂的业务需要时Guava Collections可以带来很酷的编码体验！！！  Guava Collections中的集合应该也是最成熟为人所熟知的一部分【不可变集合，新集合类型，强大的集合工具类，扩展集合工具类】。  在JAVA中使用Guava Collecti">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/img-article/4.png">
+<meta property="og:image" content="http://yoursite.com/img-article/5.png">
+<meta property="og:image" content="http://yoursite.com/img-article/6.png">
+<meta property="og:updated_time" content="2017-06-26T08:26:46.235Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Guava Collections使用体验">
+<meta name="twitter:description" content="的确Java Collections Framework：Set,List,Map已经基本可以满足我们的要求；但当我们遇上一些比较复杂的业务需要时Guava Collections可以带来很酷的编码体验！！！  Guava Collections中的集合应该也是最成熟为人所熟知的一部分【不可变集合，新集合类型，强大的集合工具类，扩展集合工具类】。  在JAVA中使用Guava Collecti">
+<meta name="twitter:image" content="http://yoursite.com/img-article/4.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Harbor" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/lion.svg">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet">
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<a href="https://github.com/LionYe">
+    <img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/8b6b8ccc6da3aa5722903da7b58eb5ab1081adee/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png">
+</a>
+<div class="intrude-less">
+
+    <header id="header" class="inner">
+
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/lion-ye.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate">Lion Ye</a></h1>
+        </hgroup>
+
+        
+        
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/about">关于</a></li>
+                        
+                            <li><a href="/archives">归档</a></li>
+                        
+                            <li><a href="/tags">标签</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PQ8KCwkJCwsKCH1MTBNeUlA" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/LionYe" title="github">github</a>
+                            
+                                <a class="fl weibo" target="_blank" href="http://www.weibo.com/3282582595/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" title="weibo">weibo</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">Lion Ye</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/lion-ye.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">Lion Ye</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/about">关于</a></li>
+                
+                    <li><a href="/archives">归档</a></li>
+                
+                    <li><a href="/tags">标签</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PQ8KCwkJCwsKCH1MTBNeUlA" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/LionYe" title="github">github</a>
+                    
+                        <a class="weibo" target="_blank" href="http://www.weibo.com/3282582595/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" title="weibo">weibo</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-Guava-Collections使用体验" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/06/23/Guava-Collections使用体验/" class="article-date">
+      <time datetime="2017-06-23T07:45:04.000Z" itemprop="datePublished">2017-06-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Guava Collections使用体验
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>  的确Java Collections Framework：Set,List,Map已经基本可以满足我们的要求；但当我们遇上一些比较复杂的业务需要时Guava Collections可以带来很酷的编码体验！！！<br>  Guava Collections中的集合应该也是最成熟为人所熟知的一部分【不可变集合，新集合类型，强大的集合工具类，扩展集合工具类】。<br>  在JAVA中使用Guava Collections时引入Maven文件如下：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.google.guava&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;guava&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;18.0&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+  <a id="more"></a>
+
+<p>切换至有道云浏览：<a href="http://note.youdao.com/noteshare?id=783a65200b8f514dfa6ea4cc29b79a62&amp;sub=3C7C81E3DF4D4F459B91B9E424CC78AA" target="_blank" rel="noopener">http://note.youdao.com/noteshare?id=783a65200b8f514dfa6ea4cc29b79a62&amp;sub=3C7C81E3DF4D4F459B91B9E424CC78AA</a>  </p>
+<h3 id="JDK-Collection"><a href="#JDK-Collection" class="headerlink" title="JDK Collection"></a>JDK Collection</h3><h4 id="SET（无序，唯一）"><a href="#SET（无序，唯一）" class="headerlink" title="SET（无序，唯一）"></a>SET（无序，唯一）</h4><h5 id="HashSet-——为快速查找设计的Set（基本创建的都是HashSet）"><a href="#HashSet-——为快速查找设计的Set（基本创建的都是HashSet）" class="headerlink" title="HashSet()——为快速查找设计的Set（基本创建的都是HashSet）"></a>HashSet()——为快速查找设计的Set（基本创建的都是HashSet）</h5> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">对象创建方式：</span><br><span class="line">Set&lt;String&gt; set1 = new HashSet&lt;&gt;();</span><br><span class="line">等价于Guava Sets创建(可查看源码)：</span><br><span class="line">Set&lt;String&gt; set2 = Sets.newHashSet();</span><br></pre></td></tr></table></figure>
+
+<h5 id="TreeSet-——保存次序的Set-底层为树结构。使用它可以从Set中提取有序的序列"><a href="#TreeSet-——保存次序的Set-底层为树结构。使用它可以从Set中提取有序的序列" class="headerlink" title="TreeSet()——保存次序的Set, 底层为树结构。使用它可以从Set中提取有序的序列"></a>TreeSet()——保存次序的Set, 底层为树结构。使用它可以从Set中提取有序的序列</h5> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">对象创建方式：</span><br><span class="line">Set&lt;String&gt; set1 = new TreeSet&lt;&gt;();</span><br><span class="line">等价于Guava Lists创建(可查看源码)：</span><br><span class="line">Set&lt;String&gt; set2 = Sets.newTreeSet();</span><br></pre></td></tr></table></figure>
+
+<h5 id="LinkedHashSet-—–具有HashSet的查询速度，且内部使用链表维护元素的顺序-插入的次序-。于是在使用迭代器遍历Set时，结果会按元素插入的次序显示。"><a href="#LinkedHashSet-—–具有HashSet的查询速度，且内部使用链表维护元素的顺序-插入的次序-。于是在使用迭代器遍历Set时，结果会按元素插入的次序显示。" class="headerlink" title="LinkedHashSet()—–具有HashSet的查询速度，且内部使用链表维护元素的顺序(插入的次序)。于是在使用迭代器遍历Set时，结果会按元素插入的次序显示。"></a>LinkedHashSet()—–具有HashSet的查询速度，且内部使用链表维护元素的顺序(插入的次序)。于是在使用迭代器遍历Set时，结果会按元素插入的次序显示。</h5> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">对象创建方式：</span><br><span class="line">Set&lt;String&gt; set1 = new LinkedHashSet&lt;&gt;();</span><br><span class="line">等价于Guava Sets创建(可查看源码)：</span><br><span class="line">Set&lt;String&gt; set2 = Sets.newLinkedHashSet();</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="List-有序，不唯一"><a href="#List-有序，不唯一" class="headerlink" title="List(有序，不唯一)"></a>List(有序，不唯一)</h4><h5 id="ArrayList-—-由数组实现的List。允许对元素进行快速随机访问；插入和移除元素。比LinkedList开销要大很多。"><a href="#ArrayList-—-由数组实现的List。允许对元素进行快速随机访问；插入和移除元素。比LinkedList开销要大很多。" class="headerlink" title="ArrayList()—-由数组实现的List。允许对元素进行快速随机访问；插入和移除元素。比LinkedList开销要大很多。"></a>ArrayList()—-由数组实现的List。允许对元素进行快速随机访问；插入和移除元素。比LinkedList开销要大很多。</h5> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">对象创建方式：</span><br><span class="line">List&lt;String&gt; list1 = new ArrayList&lt;&gt;();</span><br><span class="line">等价于Guava Sets创建(可查看源码)：	</span><br><span class="line">List&lt;String&gt; list2 = Lists.newArrayList();</span><br></pre></td></tr></table></figure>
+
+<h5 id="LinkedList-—底层采用链表，插入和删除的效率高一点；随机访问则相对较慢。"><a href="#LinkedList-—底层采用链表，插入和删除的效率高一点；随机访问则相对较慢。" class="headerlink" title="LinkedList()—底层采用链表，插入和删除的效率高一点；随机访问则相对较慢。"></a>LinkedList()—底层采用链表，插入和删除的效率高一点；随机访问则相对较慢。</h5> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">对象创建方式：</span><br><span class="line">List&lt;String&gt; list1 = new LinkedList&lt;&gt;();</span><br><span class="line">等价于Guava Lists创建(可查看源码)：</span><br><span class="line">List&lt;String&gt; list2 = Lists.newLinkedList();</span><br></pre></td></tr></table></figure>
+
+<h4 id="Map-映射"><a href="#Map-映射" class="headerlink" title="Map(映射)"></a>Map(映射)</h4><h5 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap()"></a>HashMap()</h5> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">对象创建方式：</span><br><span class="line">Map&lt;String, String&gt; map1 = new HashMap&lt;&gt;(); //JDK</span><br><span class="line">	</span><br><span class="line">Map&lt;String, String&gt; map2 = Maps.newHashMap(); //Guava</span><br><span class="line"></span><br><span class="line">Maps newHashMap()方法源码：</span><br><span class="line">public static &lt;K, V&gt; HashMap&lt;K, V&gt; newHashMap() &#123;</span><br><span class="line">  return new HashMap&lt;K, V&gt;();</span><br><span class="line">&#125;	</span><br><span class="line">由源码可知两者创建方式是一致的；使用时更倾向于Guava创建对象显得干净利落！！！</span><br></pre></td></tr></table></figure>
+
+<p>HashMap与HashTable可查看源码知实现功能与原理一致可互用；<br>区别：<br>1、HashMap继承AbstractMap类，实现Map接口；HashTable继承Dictionary，实现Map接口。<br>2、HashMap线程非安全；HashTable线程安全。<br>3、HashMap允许null值；HashTable不允许null值。</p>
+<h3 id="Guava-Collection"><a href="#Guava-Collection" class="headerlink" title="Guava Collection"></a>Guava Collection</h3><h4 id="Multiset-——文档计数，访问计数等"><a href="#Multiset-——文档计数，访问计数等" class="headerlink" title="Multiset ——文档计数，访问计数等"></a>Multiset ——文档计数，访问计数等</h4><p>统计一个词在文档中出现了多少次，传统的做法是这样的：<br>这种写法很笨拙，也容易出错，并且不支持同时收集多种统计信息，如总词数。我们可以做的更好。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, Integer&gt; counts = new HashMap&lt;String, Integer&gt;();</span><br><span class="line">for (String word : words) &#123;</span><br><span class="line">    Integer count = counts.get(word);</span><br><span class="line">    if (count == null) &#123;</span><br><span class="line">        counts.put(word, 1);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        counts.put(word, count + 1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Guava提供了一个新集合类型 Multiset，它可以多次添加相等的元素。Multiset元素的顺序是无关紧要的：Multiset {a, a, b}和{a, b, a}是相等的；Multiset继承自JDK中的Collection接口，而不是Set接口，所以包含重复元素并没有违反原有的接口契约。</p>
+<h4 id="使用较多-Multimap-————一健多值集合映射"><a href="#使用较多-Multimap-————一健多值集合映射" class="headerlink" title="*[使用较多]Multimap ————一健多值集合映射"></a>*[使用较多]Multimap ————一健多值集合映射</h4><p>Guava的Multimap可以很容易地把一个键映射到多个值。换句话说，Multimap是把键映射到任意多个值的一般方式。可以用以下两种方式思考Multimap:<br>“键-单个值映射”的集合：<br>a -&gt; 1 a -&gt; 2 a -&gt;4 b -&gt; 3 c -&gt; 5<br>或者”键-值集合映射”的映射：<br>a -&gt; [1, 2, 4] b -&gt; 3 c -&gt; 5    这种方式是通过asMap()将视图返回为Map&lt;K, Collection<v>&gt;形式；不会有任何空集合映射进去：一个键要么至少到一个值，要么根本就不在Multimap中。<br>*注：很少会直接使用Multimap接口，更多时候你会用ListMultimap或SetMultimap接口，它们分别把键映射到List或Set。</v></p>
+<h5 id="SetMultimap"><a href="#SetMultimap" class="headerlink" title="SetMultimap"></a>SetMultimap</h5><pre><code>SetMultimap&lt;Object,Object&gt; multMap = HashMultimap.create(); //对象创建</code></pre><p><img src="/img-article/4.png" alt="setMultimap.png">   </p>
+<h5 id="ListMultimap"><a href="#ListMultimap" class="headerlink" title="ListMultimap"></a>ListMultimap</h5><pre><code>ListMultimap&lt;Object, Object&gt; listMultMap = ArrayListMultimap.create();//对象创建</code></pre><p><img src="/img-article/5.png" alt="listMultimap.png">   </p>
+<h4 id="BiMap-————-双向映射"><a href="#BiMap-————-双向映射" class="headerlink" title="BiMap ———— 双向映射"></a>BiMap ———— 双向映射</h4><p> 传统上，实现键值对的双向映射需要维护两个单独的map，并保持它们间的同步。但这种方式很容易出错，而且对于值已经在map中的情况，会变得非常混乱。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, String&gt; idToName = Maps.newHashMap();</span><br><span class="line">idToName.put(&quot;001&quot;, &quot;harbor&quot;);</span><br><span class="line">Map&lt;String, String&gt; nameToId = Maps.newHashMap();</span><br><span class="line">nameToId.put(&quot;harbor&quot;, &quot;001&quot;);</span><br><span class="line">//如果&quot;harbor&quot;和001已经在map中了，会发生什么?</span><br><span class="line">//如果我们忘了同步两个map，会有诡异的bug发生...</span><br></pre></td></tr></table></figure>
+
+<pre><code>BiMap&lt;String, String&gt; bimap = HashBiMap.create();//对象创建</code></pre><p>可通过inverse()方法对集合进行健值反转BiMap&lt;K, V&gt;是特殊的Map：<br>  ● 可以用inverse()反转BiMap&lt;K, V&gt;的键值映射<br>  ● 保证值是唯一的，因此values()返回Set而不是普通的Collection<br><img src="/img-article/6.png" alt="bimap.png">   </p>
+
+      
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/06/23/Guava-Collections使用体验/">Guava Collections使用体验</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 Lion Ye 的个人博客">Lion Ye</a></p>
+        <p><span>发布时间:</span>2017年06月23日 - 15时45分</p>
+        <p><span>最后更新:</span>2017年06月26日 - 16时26分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/06/23/Guava-Collections使用体验/" title="Guava Collections使用体验">http://yoursite.com/2017/06/23/Guava-Collections使用体验/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/06/23/Guava-Collections使用体验/　　作者: Lion Ye" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2017/06/30/git-初始化提交失败/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          git 初始化提交失败
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/06/16/mybatis中-与-的区别/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">mybatis中#与$的区别</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#JDK-Collection"><span class="toc-number">1.</span> <span class="toc-text">JDK Collection</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SET（无序，唯一）"><span class="toc-number">1.1.</span> <span class="toc-text">SET（无序，唯一）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#HashSet-——为快速查找设计的Set（基本创建的都是HashSet）"><span class="toc-number">1.1.1.</span> <span class="toc-text">HashSet()——为快速查找设计的Set（基本创建的都是HashSet）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#TreeSet-——保存次序的Set-底层为树结构。使用它可以从Set中提取有序的序列"><span class="toc-number">1.1.2.</span> <span class="toc-text">TreeSet()——保存次序的Set, 底层为树结构。使用它可以从Set中提取有序的序列</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#LinkedHashSet-—–具有HashSet的查询速度，且内部使用链表维护元素的顺序-插入的次序-。于是在使用迭代器遍历Set时，结果会按元素插入的次序显示。"><span class="toc-number">1.1.3.</span> <span class="toc-text">LinkedHashSet()—–具有HashSet的查询速度，且内部使用链表维护元素的顺序(插入的次序)。于是在使用迭代器遍历Set时，结果会按元素插入的次序显示。</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#List-有序，不唯一"><span class="toc-number">1.2.</span> <span class="toc-text">List(有序，不唯一)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#ArrayList-—-由数组实现的List。允许对元素进行快速随机访问；插入和移除元素。比LinkedList开销要大很多。"><span class="toc-number">1.2.1.</span> <span class="toc-text">ArrayList()—-由数组实现的List。允许对元素进行快速随机访问；插入和移除元素。比LinkedList开销要大很多。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#LinkedList-—底层采用链表，插入和删除的效率高一点；随机访问则相对较慢。"><span class="toc-number">1.2.2.</span> <span class="toc-text">LinkedList()—底层采用链表，插入和删除的效率高一点；随机访问则相对较慢。</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Map-映射"><span class="toc-number">1.3.</span> <span class="toc-text">Map(映射)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#HashMap"><span class="toc-number">1.3.1.</span> <span class="toc-text">HashMap()</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Guava-Collection"><span class="toc-number">2.</span> <span class="toc-text">Guava Collection</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Multiset-——文档计数，访问计数等"><span class="toc-number">2.1.</span> <span class="toc-text">Multiset ——文档计数，访问计数等</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用较多-Multimap-————一健多值集合映射"><span class="toc-number">2.2.</span> <span class="toc-text">*[使用较多]Multimap ————一健多值集合映射</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#SetMultimap"><span class="toc-number">2.2.1.</span> <span class="toc-text">SetMultimap</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ListMultimap"><span class="toc-number">2.2.2.</span> <span class="toc-text">ListMultimap</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BiMap-————-双向映射"><span class="toc-number">2.3.</span> <span class="toc-text">BiMap ———— 双向映射</span></a></li></ol></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/06/30/git-初始化提交失败/" title="上一篇: git 初始化提交失败">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2017/06/16/mybatis中-与-的区别/" title="下一篇: mybatis中#与$的区别">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/11/06/linux-新磁盘分区、挂载、软链接/">linux 新磁盘分区、挂载、软链接</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/04/springboot-mybatis-初始化/">springboot-mybatis 初始化</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/30/git-初始化提交失败/">git 初始化提交失败</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/23/Guava-Collections使用体验/">Guava Collections使用体验</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/16/mybatis中-与-的区别/">mybatis中#与$的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/08/Javascript中-与-的区别-双等与三d等的区别/">Javascript中= = 与 = = = 的区别(双等与三d等的区别)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/05/linux-常用命令/">linux 常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/27/equals-与hashcode-的区别/">equals()与hashcode()的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/24/git命令初步认知与使用/">git命令初步认知与使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/24/js与css频繁引入导致的缓存/">浏览器js与css文件有缓存未更新致最新版本</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2019 Lion Ye
+            </div>
+            <div class="footer-right">
+                life on <a href="https://github.com/LionYe" target="_blank">lionye</a> by 心怀
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >访客: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>

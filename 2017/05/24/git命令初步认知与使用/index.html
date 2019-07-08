@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>git命令初步认知与使用 | Harbor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="我司一直用的SVN,对Git的需求也不是很大;出于个人兴趣吧想简单学习一下git,避免自身碰到git的一些命令或问题时像个门外汉一样一窍不通;">
+<meta name="keywords" content="git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git命令初步认知与使用">
+<meta property="og:url" content="http://yoursite.com/2017/05/24/git命令初步认知与使用/index.html">
+<meta property="og:site_name" content="Harbor">
+<meta property="og:description" content="我司一直用的SVN,对Git的需求也不是很大;出于个人兴趣吧想简单学习一下git,避免自身碰到git的一些命令或问题时像个门外汉一样一窍不通;">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/img-article/1.jpg">
+<meta property="og:image" content="http://yoursite.com/img-article/2.jpg">
+<meta property="og:updated_time" content="2017-05-27T07:29:24.347Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="git命令初步认知与使用">
+<meta name="twitter:description" content="我司一直用的SVN,对Git的需求也不是很大;出于个人兴趣吧想简单学习一下git,避免自身碰到git的一些命令或问题时像个门外汉一样一窍不通;">
+<meta name="twitter:image" content="http://yoursite.com/img-article/1.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="Harbor" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/lion.svg">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet">
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<a href="https://github.com/LionYe">
+    <img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/8b6b8ccc6da3aa5722903da7b58eb5ab1081adee/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png">
+</a>
+<div class="intrude-less">
+
+    <header id="header" class="inner">
+
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/lion-ye.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate">Lion Ye</a></h1>
+        </hgroup>
+
+        
+        
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/about">关于</a></li>
+                        
+                            <li><a href="/archives">归档</a></li>
+                        
+                            <li><a href="/tags">标签</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PQ8KCwkJCwsKCH1MTBNeUlA" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/LionYe" title="github">github</a>
+                            
+                                <a class="fl weibo" target="_blank" href="http://www.weibo.com/3282582595/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" title="weibo">weibo</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">Lion Ye</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/lion-ye.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">Lion Ye</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/about">关于</a></li>
+                
+                    <li><a href="/archives">归档</a></li>
+                
+                    <li><a href="/tags">标签</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PQ8KCwkJCwsKCH1MTBNeUlA" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/LionYe" title="github">github</a>
+                    
+                        <a class="weibo" target="_blank" href="http://www.weibo.com/3282582595/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" title="weibo">weibo</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-git命令初步认知与使用" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/05/24/git命令初步认知与使用/" class="article-date">
+      <time datetime="2017-05-24T05:48:27.000Z" itemprop="datePublished">2017-05-24</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      git命令初步认知与使用
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <br>
+
+<p>我司一直用的SVN,对Git的需求也不是很大;出于个人兴趣吧想简单学习一下git,避免自身碰到git的一些命令或问题时像个门外汉一样一窍不通;</p>
+<a id="more"></a>
+<h4 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h4><p><a href="https://git-scm.com/downloads" target="_blank" rel="noopener">https://git-scm.com/downloads</a> 选择合适的系统文件下载;<br><br>安装完成后<code>git --version</code>查看是否安装成功</p>
+<h4 id="初始化本地仓库"><a href="#初始化本地仓库" class="headerlink" title="初始化本地仓库"></a>初始化本地仓库</h4><p>定位到需要创建的文件位置 <code>git init</code><br>如下图所示创建完成后会在相应的地方看到.git隐藏文件;若要去除与远程仓库的连接删除(不建议进行删除) <strong>.git文件夹</strong><br><img src="/img-article/1.jpg" alt="定位.png"><br><img src="/img-article/2.jpg" alt="创建.png"> </p>
+<h4 id="代码提交"><a href="#代码提交" class="headerlink" title="代码提交"></a>代码提交</h4><p>连接远程仓库 <code>git remote add origin [远程仓库地址]</code>    origin为github默认的连接名<br><br><code>git add [所要提交的文件夹名]</code><br><br><code>git commit -m &quot;提交的注释&quot;</code><br><br><code>git push origin [分支名]</code></p>
+<h4 id="克隆远程库"><a href="#克隆远程库" class="headerlink" title="克隆远程库"></a>克隆远程库</h4><p><code>git clone [远程仓库地址]</code><br><br><code>git clone -b [指定分支名] [仓库地址] [本地目录]</code></p>
+
+      
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/05/24/git命令初步认知与使用/">git命令初步认知与使用</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 Lion Ye 的个人博客">Lion Ye</a></p>
+        <p><span>发布时间:</span>2017年05月24日 - 13时48分</p>
+        <p><span>最后更新:</span>2017年05月27日 - 15时29分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/05/24/git命令初步认知与使用/" title="git命令初步认知与使用">http://yoursite.com/2017/05/24/git命令初步认知与使用/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/05/24/git命令初步认知与使用/　　作者: Lion Ye" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2017/05/27/equals-与hashcode-的区别/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          equals()与hashcode()的区别
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/05/24/js与css频繁引入导致的缓存/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">浏览器js与css文件有缓存未更新致最新版本</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装git"><span class="toc-number">1.</span> <span class="toc-text">安装git</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#初始化本地仓库"><span class="toc-number">2.</span> <span class="toc-text">初始化本地仓库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代码提交"><span class="toc-number">3.</span> <span class="toc-text">代码提交</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#克隆远程库"><span class="toc-number">4.</span> <span class="toc-text">克隆远程库</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/05/27/equals-与hashcode-的区别/" title="上一篇: equals()与hashcode()的区别">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2017/05/24/js与css频繁引入导致的缓存/" title="下一篇: 浏览器js与css文件有缓存未更新致最新版本">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/11/06/linux-新磁盘分区、挂载、软链接/">linux 新磁盘分区、挂载、软链接</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/04/springboot-mybatis-初始化/">springboot-mybatis 初始化</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/30/git-初始化提交失败/">git 初始化提交失败</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/23/Guava-Collections使用体验/">Guava Collections使用体验</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/16/mybatis中-与-的区别/">mybatis中#与$的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/08/Javascript中-与-的区别-双等与三d等的区别/">Javascript中= = 与 = = = 的区别(双等与三d等的区别)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/05/linux-常用命令/">linux 常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/27/equals-与hashcode-的区别/">equals()与hashcode()的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/24/git命令初步认知与使用/">git命令初步认知与使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/24/js与css频繁引入导致的缓存/">浏览器js与css文件有缓存未更新致最新版本</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2019 Lion Ye
+            </div>
+            <div class="footer-right">
+                life on <a href="https://github.com/LionYe" target="_blank">lionye</a> by 心怀
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >访客: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
